@@ -15,7 +15,8 @@ class CreateLayoutsTable extends Migration
     {
         Schema::create('layouts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');            
+            $table->string('name');
+            $table->integer('status');            
             $table->timestamps();
         });
     }

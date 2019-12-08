@@ -27,9 +27,11 @@ class LayoutController extends Controller
             ->get();
 
             $name = Layout::find($layout->id)->name;
+            
             array_push($layoutData,(object) [
                 'data' => $data,
                 'name' => $name,
+                'id' => $layout->id,
             ]);
         }
 
@@ -89,9 +91,26 @@ class LayoutController extends Controller
      * @param  \App\Layout  $layout
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Layout $layout)
+    public function update(Request $request)
     {
-        //
+        $layouts = Layout::all();
+
+        foreach ($layouts as $l) 
+        {
+            
+            if($l->id == $request->layout)
+            {
+                $l->status = 1;
+            }
+            else
+            {
+                $l->status = 0;
+            }
+
+            $l->save();
+        }
+        
+        return redirect()->route('home');
     }
 
     /**

@@ -9,7 +9,7 @@
 
             <div class="col">
                 <div class="col-md-6">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
                         Delete Image
                     </button>
                 </div>

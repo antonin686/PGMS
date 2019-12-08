@@ -53,9 +53,16 @@
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="/layout/list">List</a>
-                            <a class="dropdown-item" href="/layoutImage/create">Create</a>
+                            <a class="dropdown-item" href="/layoutImage/create">Add Images</a>
                         </div>
                 </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('logt')}}">Logout, {{session('username')}}</a>
+                </li>
+                
             </ul>
         </div>
 
