@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="{{ asset('css/style.css')}} ">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/cropper.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/jquery.mosaic.min.css')}}">
     <script src=" {{ asset('js/cropper.min.js')}} "></script>
     <script src=" {{ asset('js/jquery-cropper.min.js')}} "></script>
+    <script src=" {{ asset('js/jquery.mosaic.min.js')}} "></script>
 </head>
 
 <body>

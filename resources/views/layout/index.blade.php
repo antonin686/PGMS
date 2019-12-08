@@ -14,13 +14,6 @@
                     <div class="container">
                         <div class="img-hover">
                             <img src="/{{$img->path}}" alt="{{$img->title}}">
-                            <!--
-                        <div class="img-text ">
-                            <div class="h2">
-                                dad
-                            </div>
-                        </div>
-                        -->
                         </div>
                     </div>
                 </a>

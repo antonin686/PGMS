@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Img;
+use App\Layout;
+use App\LayoutImage;
 use App\Catagory;
 use App\SubCatagory;
 use Illuminate\Http\Request;
@@ -46,7 +48,7 @@ class ImgController extends Controller
     {
         $file = $request->file('file');
         //error_log('cdasda'.$request->catagory);
-        $name = time().'.'.$file->getClientOriginalExtension();
+        $name = time().rand().'.'.$file->getClientOriginalExtension();
         $file->move('uploads', $name);
         
         $img = new Img();
@@ -83,6 +85,8 @@ class ImgController extends Controller
         return view('image.edit')->with('img', $img);
                                 
     }
+
+    
 
     /**
      * Update the specified resource in storage.
@@ -127,8 +131,20 @@ class ImgController extends Controller
      * @param  \App\Img  $img
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Img $img)
+    public function destroy($id)
     {
+        $img = Img::find($id);
         //
+        $path = $img->path;
+        $di = $img->delete();
+
+        $dd = LayoutImage::where('i_id', $id)->delete();
+        File::delete($path);
+
+        echo $di.'<br>';
+        echo $dd;
+        echo $path;
+        //
+        return redirect()->route('image.index');
     }
 }

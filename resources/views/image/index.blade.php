@@ -10,20 +10,15 @@
         <div class="row">
             @foreach($imgs as $img)
             <div class="col-md-3">
-                <a href="/image/edit/{{$img->id}}">
-                    <div class="container">
-                        <div class="img-hover">
-                            <img src="/{{$img->path}}" alt="{{$img->title}}">
-                            <!--
-                        <div class="img-text ">
-                            <div class="h2">
-                                dad
+                <div class="card card-body m-3">
+                    <a href="/image/edit/{{$img->id}}">
+                        <div class="container">
+                            <div class="img-hover">
+                                <img src="/{{$img->path}}" alt="{{$img->title}}">
                             </div>
                         </div>
-                        -->
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
             @endforeach
         </div>
