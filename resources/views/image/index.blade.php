@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="row">
             @foreach($imgs as $img)
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card card-body m-3">
                     <a href="/image/edit/{{$img->id}}">
                         <div class="container">

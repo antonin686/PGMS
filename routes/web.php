@@ -15,7 +15,9 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'LayoutImageController@root')->name('root');
+Route::get('/', 'HomeController@index')->name('root');
+Route::get('/gallery', 'GalleryController@index')->name('gallery.index');
+Route::get('/gallery/{id}', 'GalleryController@show')->name('gallery.show');
 Route::get('/login', 'LoginController@index')->name('log');
 Route::post('/login', 'LoginController@verify');
 

@@ -101,6 +101,7 @@ class ImgController extends Controller
         //dd($request->all());
         
         $newImg = Image::make($img->path);
+        //dd($request->rotate);
         $newImg->rotate(-$request->rotate);
 
         if($request->cropCheck != null)

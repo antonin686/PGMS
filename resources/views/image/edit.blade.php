@@ -31,6 +31,7 @@
                     <input type="hidden" name="cropY" id="cropY">
                     <input type="hidden" name="cropWidth" id="cropWidth">
                     <input type="hidden" name="cropHeight" id="cropHeight">
+                    <input type="hidden" name="rotate" id="irotate">
                     <div class="row">
                         <div class="col-md-6">
                             <img id="image" style="width:100%" src="/{{$img->path}}" alt="Picture">
