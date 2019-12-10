@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        img{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p>If you click on me, I will disappear.</p>
+    <p>Click me away!</p>
+    <p>Click me too!</p>
+    <div id="gallery">
+
+
+    </div>
+    <script>
+        $(document).ready( () => {
+
+            $.ajax({
+                url: "http://localhost:8000/api/ojaiodjai121313112",
+                method: 'get',
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    gallery(result);
+                }
+            });
+
+            function gallery(result) {
+                console.log(result);
+                var html = "";
+                //var data = result.data;
+                result.data.forEach((data) => {
+                    html += `<img width='${data.width}' height='${data.height}' src='${data.path}'>`
+                });
+                $('#gallery').html(html);
+            }
+        });
+    </script>
+</body>
+
+</html>

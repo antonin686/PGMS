@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Api_key;
 use Illuminate\Http\Request;
-use App\Img;
-use App\Catagory;
-use App\Subcatagory;
-use App\Layout;
-use App\Gallery;
 
-class GalleryController extends Controller
+class ApiKeyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +14,7 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -26,12 +22,9 @@ class GalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $imgs = Img::where('u_id', $request->session()->get('userid'))->get();
-        $layouts = Layout::all();
-
-        return view('gallery.create')->with('imgs', $imgs)->with('layouts', $layouts);
+        //
     }
 
     /**
@@ -42,44 +35,27 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $request->session()->get('userid');
-
-        if($request->images != null)
-        {
-            $layout = $request->layout;
-
-            Gallery::where('u_id', $user)->delete();
-            
-            foreach($request->images as $image)
-            {
-                $gallery = new Gallery();
-                $gallery->u_id = $user;
-                $gallery->i_id = $image;
-                $gallery->save();
-            }
-
-            return redirect()->route('gallery.index');
-        }
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Api_key  $api_key
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Api_key $api_key)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Api_key  $api_key
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Api_key $api_key)
     {
         //
     }
@@ -88,10 +64,10 @@ class GalleryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Api_key  $api_key
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Api_key $api_key)
     {
         //
     }
@@ -99,10 +75,10 @@ class GalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Api_key  $api_key
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Api_key $api_key)
     {
         //
     }

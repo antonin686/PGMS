@@ -15,11 +15,19 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'HomeController@index')->name('root');
-Route::get('/gallery', 'GalleryController@index')->name('gallery.index');
-Route::get('/gallery/{id}', 'GalleryController@show')->name('gallery.show');
+Route::view('/', 'welcome')->name('root');
+
 Route::get('/login', 'LoginController@index')->name('log');
 Route::post('/login', 'LoginController@verify');
+Route::get('/api/{api_key}', 'Api_keyController@index')->name('api.index');
+
+// Route::group([
+//     'middleware' => ['api', 'cors'],
+//     'prefix' => 'api',
+// ], function ($router) {
+//      //Add you routes here, for example:
+//      Route::apiResource('/{api_key}','Api_keyController');
+// });
 
 Route::group(['middleware' => 'checkSession'], function() {
 
@@ -30,10 +38,11 @@ Route::group(['middleware' => 'checkSession'], function() {
     Route::get('/image/edit/{id}', 'ImgController@edit')->name('image.edit');
     Route::post('/image/edit/{id}', 'ImgController@update')->name('image.update');
     Route::get('/image/destroy/{id}', 'ImgController@destroy')->name('image.destroy');
-    Route::get('/layout/list', 'LayoutController@index')->name('layout.index');
-    Route::post('/layout/list', 'LayoutController@update');
-    Route::get('/layoutImage/create', 'LayoutImageController@create')->name('LayoutImage.add');
-    Route::post('/layoutImage/create', 'LayoutImageController@store')->name('LayoutImage.store');   
+    Route::get('/galleryImage', 'GalleryImageController@index')->name('galleryImage.index');
+    Route::post('/galleryImage', 'GalleryImageController@update');
+    Route::get('/galleryImage/create', 'GalleryImageController@create')->name('galleryImage.create');
+    Route::post('/galleryImage/create', 'GalleryImageController@store'); 
     Route::get('/logout', 'LoginController@destroy')->name('logt'); 
+
 });
 

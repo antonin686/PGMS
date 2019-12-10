@@ -21,7 +21,7 @@ class LayoutImageController extends Controller
         $imgs = DB::table('layout_images')
             ->join('imgs', 'layout_images.i_id', '=', 'imgs.id')
             ->join('layouts', 'layouts.id', '=', 'layout_images.l_id')
-            ->where('status', 1)
+            ->where('layout_images.l_id', 1)
             ->get();
 
         $sizes = [
@@ -53,8 +53,6 @@ class LayoutImageController extends Controller
             'l_name' => $imgs[0]->name,
         ];
         
-        
-
         return view('home')->with('imgs', $datas);
     }
 

@@ -47,7 +47,7 @@
 
                                 <div class="container">
                                     <div class="img-hover">
-                                        <img src="/{{$img->path}}" alt="{{$img->title}}">
+                                        <img width="{{$img->width}}" height="{{$img->height}}" src="/{{$img->path}}" alt="{{$img->title}}">
                                     </div>
                                 </div>
 

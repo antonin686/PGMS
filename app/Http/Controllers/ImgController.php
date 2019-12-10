@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Img;
-use App\Layout;
-use App\LayoutImage;
 use App\Catagory;
+use App\Img;
+use App\LayoutImage;
 use App\SubCatagory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -18,10 +17,50 @@ class ImgController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $imgs = Img::where('u_id', 1)->get();
-        return view('image.index')->with('imgs', $imgs);
+        $imgs = Img::where('u_id', $request->session()->get('userid'))->get();
+        $catagories = Catagory::all();
+        $subCatagories = SubCatagory::all();
+
+        $datas = [];
+
+        foreach ($catagories as $catagory) {
+            $subcata = [];   
+            foreach ($subCatagories as $sub) {
+
+                if ($sub->c_id == $catagory->id) {
+                    $data = [];
+                  
+                    foreach ($imgs as $img) {
+
+                        if ($sub->id == $img->subCatagory) {
+                            $data[] = $img;
+                          
+                        }
+                    }
+                    if (!empty($data)) {
+                        $subcata[] = [
+                            'sub_name' => $sub->name,
+                            'data' => $data,
+                        ];
+                    }
+                }
+
+            }
+            
+            if(!empty($subcata))
+            {
+                $datas[] = [
+                    'cata_name' => $catagory->name,
+                    'sub_data' => $subcata,
+                ];
+            }
+            
+        }
+
+        //dd($datas);
+        return view('image.index')->with('datas', $datas);
     }
 
     /**
@@ -33,9 +72,9 @@ class ImgController extends Controller
     {
         $cata = Catagory::all();
         $subcata = Subcatagory::all();
-        
+
         return view('image.create')->with('cata', $cata)
-                                    ->with('sub', $subcata);
+            ->with('sub', $subcata);
     }
 
     /**
@@ -48,15 +87,15 @@ class ImgController extends Controller
     {
         $file = $request->file('file');
         //error_log('cdasda'.$request->catagory);
-        $name = time().rand().'.'.$file->getClientOriginalExtension();
+        $name = time() . rand() . '.' . $file->getClientOriginalExtension();
         $file->move('uploads', $name);
-        
+
         $img = new Img();
         $img->title = $file->getClientOriginalName();
         $img->desc = "Image";
         $img->catagory = $request->catagory;
         $img->subCatagory = $request->subCatagory;
-        $img->path = 'uploads/'.$name ;
+        $img->path = 'uploads/' . $name;
         $img->u_id = 1;
         $img->save();
     }
@@ -83,10 +122,8 @@ class ImgController extends Controller
         $img = Img::find($id);
         //dd($id);
         return view('image.edit')->with('img', $img);
-                                
-    }
 
-    
+    }
 
     /**
      * Update the specified resource in storage.
@@ -99,23 +136,22 @@ class ImgController extends Controller
     {
         $img = Img::find($id);
         //dd($request->all());
-        
+
         $newImg = Image::make($img->path);
         //dd($request->rotate);
         $newImg->rotate(-$request->rotate);
 
-        if($request->cropCheck != null)
-        {
+        if ($request->cropCheck != null) {
             $x = round($request->cropX);
             $y = round($request->cropY);
             $w = round($request->cropWidth);
             $h = round($request->cropWidth);
-            
-            $newImg->crop( $w, $h, $x, $y);
-            $newImg->resize( $w, $h);
+
+            $newImg->crop($w, $h, $x, $y);
+            $newImg->resize($w, $h);
         }
 
-        $path = 'uploads/'.time().'.jpg';
+        $path = 'uploads/' . time() . '.jpg';
         $newImg->save($path);
         File::delete($img->path);
         $img->path = $path;
@@ -123,7 +159,7 @@ class ImgController extends Controller
         $img->desc = $request->desc;
         $img->save();
 
-        return redirect()->route('image.index',['id' => $id]);
+        return redirect()->route('image.index', ['id' => $id]);
     }
 
     /**
@@ -142,9 +178,9 @@ class ImgController extends Controller
         $dd = LayoutImage::where('i_id', $id)->delete();
         File::delete($path);
 
-        echo $di.'<br>';
-        echo $dd;
-        echo $path;
+        // echo $di.'<br>';
+        // echo $dd;
+        // echo $path;
         //
         return redirect()->route('image.index');
     }
