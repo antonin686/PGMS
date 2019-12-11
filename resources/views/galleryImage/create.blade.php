@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <div class="col">
                         @foreach($datas as $data)
-                        <div class="card">
+                        <div class="card mt-3">
                             <div class="card-header">{{$data['cata_name']}}</div>
                             <div class="card-body">
                                 <div class="col">
@@ -38,15 +38,17 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 @foreach($sub['data'] as $img)
-                                                <div class="col-md-3 mb-3">
+                                                <div class="col-md-4 mb-3 ">
 
-                                                    <div class=" text-center">
-                                                        <label class="image-checkbox">
-                                                            <img width="300" height="300" class=" img-responsive"
-                                                                src="/{{$img->path}}" />
-                                                            <input type="checkbox" name="images[]"
-                                                                value="{{$img->id}}" />
-                                                        </label>
+                                                    <div class="container pr-3">
+                                                        <div class=" text-center">
+                                                            <label class="image-checkbox">
+                                                                <img width="300" height="300" class=" img-responsive"
+                                                                    src="/{{$img->path}}" />
+                                                                <input type="checkbox" name="images[]"
+                                                                    value="{{$img->id}}" />
+                                                            </label>
+                                                        </div>
                                                     </div>
 
                                                 </div>

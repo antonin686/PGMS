@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="col">
             @foreach($datas as $data)
-            <div class="card">
+            <div class="card mt-3">
                 <div class="card-header">{{$data['cata_name']}}</div>
                 <div class="card-body">
                     <div class="col">
@@ -19,7 +19,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     @foreach($sub['data'] as $img)
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="card card-body m-3">
                                             <a href="/image/edit/{{$img->id}}">
                                                 <div class="container">

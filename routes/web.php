@@ -31,7 +31,7 @@ Route::get('/api/{api_key}', 'Api_keyController@index')->name('api.index');
 
 Route::group(['middleware' => 'checkSession'], function() {
 
-    Route::get('/home', 'LayoutImageController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/image/list', 'ImgController@index')->name('image.index');
     Route::get('/image/create', 'ImgController@create')->name('image.create');
     Route::post('/image/store', 'ImgController@store');
